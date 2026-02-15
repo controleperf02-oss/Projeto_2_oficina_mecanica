@@ -1,0 +1,106 @@
+
+======================================================================
+PROJETO: SISTEMA DE GESTÃO DE OFICINA MECÂNICA (SQL LÓGICO)
+======================================================================
+Analista de Dados: Paulo Roberto
+Tecnologia: MySQL Workbench
+Metodologia: Modelo Relacional Normalizado
+Contexto: Bootcamp Klabin - Excel e Power BI Dashboards
+======================================================================
+
+
+
+1. DESCRIÇÃO DO PROJETO
+
+Este projeto consiste na transposição de um modelo conceitual (EER) para um esquema lógico de banco de dados voltado ao contexto de uma Oficina Mecânica. 
+O objetivo é gerenciar desde o cadastro de clientes e veículos até o controle complexo de ordens de serviço, execução de mão de obra e consumo de estoque.
+
+
+2. ESTRUTURA DO BANCO DE DADOS (DDL & DML)
+
+O banco "oficina_mecanica" foi estruturado com 10 tabelas interconectadas, garantindo a integridade referencial através de Constraints e Foreign Keys.
+
+Tabelas Implementadas:
+- Clientes, Veículos, Mecânicos, Fornecedores, Peças, Serviços_Catalogo, Métodos_Pagamento, Ordens_Servico, Itens_OS e Itens_Pecas_OS.
+
+Volume de Dados:
+- Povoamento estratégico com 20 clientes, 20 veículos e 20 Ordens de Serviço, incluindo cenários reais de faturamento alto (R$ 13k e R$ 8k) e inadimplência controlada.
+
+
+3. REQUISITOS TÉCNICOS APLICADOS
+
+O projeto demonstra domínio nas seguintes cláusulas SQL:
+- SELECT Statement para recuperação de dados.
+- WHERE Statement para filtragem específica.
+- Atributos Derivados (Cálculos de comissão, descontos e subtotais).
+- ORDER BY para classificação de performance.
+- GROUP BY & HAVING para sumarização e filtros de grupo.
+- JOINs Complexos para visão 360º do negócio (Múltiplas tabelas).
+
+
+4. QUERIES DE NEGÓCIO (DATA INSIGHTS)
+
+A) Camada Operacional (Rotina da Oficina):
+- Faturamento Bruto por OS: Cálculo de total por cliente e veículo.
+- Filtro de Ticket Alto: Identificação de serviços acima de R$ 2.500,00.
+- Produtividade por Serviço: Ranking de serviços mais realizados (Mão de Obra).
+- Gestão de Recebíveis: Levantamento de montantes pendentes por cliente.
+- Rastreabilidade de Peças: Itens consumidos em serviços de Retífica.
+
+
+
+B) 5 Queries de Negócio (Operacional)
+
+-- Quanto cada cliente deve pagar no total?
+-- Cláusulas: SELECT, JOIN, GROUP BY, ORDER BY.
+
+-- Quais serviços faturaram mais de R$ 2.500,00 por veículo?
+-- Cláusulas: SELECT, JOIN, WHERE, ORDER BY.
+
+-- Qual o faturamento total acumulado por cada tipo de serviço (Troca de óleo, Retífica, etc.) e quantas vezes cada um foi realizado?
+-- Cláusulas: SELECT, SUM, COUNT, JOIN, GROUP BY, ORDER BY.
+
+-- Qual o montante total "preso" em pagamentos pendentes por Cliente?
+-- Cláusulas usadas: SELECT, SUM (Agregado), JOIN, WHERE, GROUP BY, ORDER BY.
+
+-- Quais peças foram gastas nas OS que tiveram retífica?
+-- Cláusulas: SELECT, JOIN, WHERE.
+
+
+
+C) 5 Queries Complexas (Tomada de Decisão / BI)
+
+-- Quem é o funcionário mais produtivo para bonificação?
+-- Cláusulas: SELECT, GROUP BY, JOIN, Cálculo de Comissão.
+
+-- Quais serviços devo investir em marketing?
+-- Cláusulas: GROUP BY, HAVING, JOIN.
+
+-- O que preciso comprar urgente dos fornecedores?
+-- Cláusulas: SELECT, JOIN, WHERE, ORDER BY.
+
+-- Qual marca de carro deixa mais lucro na oficina?
+-- Cláusulas: AVG, GROUP BY, JOIN.
+
+-- O método 'Boleto' está gerando muita pendência?
+-- Cláusulas: SELECT, GROUP BY, JOIN.
+
+
+5. INTEGRIDADE E SINCRONISMO
+
+- O projeto mantém 100% de paridade entre o Modelo Lógico (Diagrama EER) e o Físico (Script SQL).
+- Uso de metadados via cláusula COMMENT em todas as tabelas para facilitar a manutenção por outros desenvolvedores.
+- Implementação de segurança de dados via SET UNIQUE_CHECKS=0 e FOREIGN_KEY_CHECKS=0 nos scripts de sincronização.
+
+
+
+6. Documentação Complementar
+
+Script Principal (SQL): Arquivo contendo toda a DDL de criação e DML de povoamento e consultas.
+Descrição do Projeto (TXT): Documentação textual com o racional das decisões de negócio.
+Dicionário de Dados (Metadados): Script com comentários detalhados aplicados a cada tabela.
+Modelo Lógico (PDF): Diagrama visual das entidades e relacionamentos para consulta rápida.
+Arquivo de Projeto (MWB): Arquivo fonte do MySQL Workbench para sincronização e edições futuras.
+
+
+
